@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Accent Detection & Cuisine Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .sample {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #fafafa;
+        }
+        .sample-input {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .sample-result {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .language-section, .cuisine-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        .language-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .cuisine-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .cuisine-item {
+            background-color: #e3f2fd;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .back-link a {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        .demo-description {
+            text-align: center;
+            color: #666;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Accent Detection Demo</h1>
+        <p class="demo-description">
+            This demo shows how the system would work with real audio samples.
+        </p>
+        
+        {% for sample in samples %}
+        <div class="sample">
+            <div class="sample-input">
+                <strong>Sample Input:</strong> "{{ sample.input }}"
+            </div>
+            
+            <div class="sample-result">
+                <div class="language-section">
+                    <div class="language-name">Detected Language: {{ sample.language }}</div>
+                </div>
+                
+                <div class="cuisine-section">
+                    <strong>Recommended Cuisines:</strong>
+                    <div class="cuisine-list">
+                        {% for cuisine in sample.cuisines %}
+                        <div class="cuisine-item">{{ cuisine }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <div class="back-link">
+            <a href="/">← Back to Upload Page</a>
+        </div>
+    </div>
+</body>
+</html>
